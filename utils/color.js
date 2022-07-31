@@ -9,7 +9,7 @@ export const colourStrengths = [
   { value: 0.125 },
 ];
 
-export function hexToRGBArray(colour: string): Array<number> | undefined {
+export function hexToRGBArray(colour) {
   if (!colour) return;
 
   if (colour.charAt(0) === "#") {
@@ -42,7 +42,7 @@ export function hexToRGBArray(colour: string): Array<number> | undefined {
 }
 
 // Luma is a weighted sum of the R, G, and B values, adjusted for human perception of relative brightness.
-export function luma(colour: string): number {
+export function luma(colour) {
   if (!colour) return;
 
   let rgb = typeof colour === "string" ? hexToRGBArray(colour) : colour;
@@ -58,7 +58,7 @@ export function luma(colour: string): number {
 }
 
 // https://www.w3.org/TR/WCAG20/
-export function contrast(colour1: string, colour2: string): number {
+export function contrast(colour1, colour2) {
   if (!colour1 || !colour2) return;
 
   const lum1 = luma(colour1);
@@ -70,7 +70,7 @@ export function contrast(colour1: string, colour2: string): number {
   return (brightest + 0.05) / (darkest + 0.05);
 }
 
-export function contrastingColour(background: string, defaultColour = COLOUR_HEX_BLACK): string {
+export function contrastingColour(background, defaultColour = COLOUR_HEX_BLACK) {
   if (!background) {
     return defaultColour;
   }
